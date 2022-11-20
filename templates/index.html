@@ -1,7 +1,30 @@
 {% extends 'layout.html' %} {% block content %}
 {% load static %}
 
-<h3>Basic Navbar Example</h3>
-<p>A navigation bar is a navigation header that is placed at the top of the page.</p>
-
+<h3>Welcome</h3>
+<p>You can see the list of books below. Enjoy!!</p>
+<h2>Book List</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>S No.</th>
+      <th>Name</th>
+      <th>Author</th>
+      <th>Publisher</th>
+      <th>Upload By</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for book in books  %}
+    <tr>
+      <td>{{ forloop.counter }}</td>
+      <td>{{ book.name }}</td>
+      <td>{{ book.author }}</td>
+      <td>{{ book.publisher }}</td>
+      <td>{{ book.user.first_name }} {{ book.user.last_name }}</td>
+      <!-- <td>{{ book.name }}</td> -->
+    </tr>     
+    {% endfor %} 
+  </tbody>
+</table>
 {% endblock %}

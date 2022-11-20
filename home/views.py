@@ -6,16 +6,17 @@ from django.http.response import HttpResponse
 from django.shortcuts import render
 # from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
+from Book.models import Book
 
 # Create your views here.
 
 @login_required(login_url='/login/')
 def index(request):
-    if request.method == 'POST':
-        return 'hello'
-        
+    # if request.method == 'POST':
+    #     return 'hello'
+    books= Book.objects.all().prefetch_related('user')
 
-    return render(request, 'index.html')
+    return render(request, 'index.html',{'books':books})
 
 def contact(request):
     return render(request, 'contact.html')
