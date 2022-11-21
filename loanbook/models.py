@@ -7,7 +7,7 @@ from accounts.models import User
 
 
 # Create your models here.
-class LoadBook(models.Model):
+class LoanBook(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     book = models.OneToOneField(Book, on_delete=models.CASCADE)
     created_at=models.DateTimeField(auto_now_add=True, blank=True)

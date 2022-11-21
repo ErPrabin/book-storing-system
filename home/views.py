@@ -15,6 +15,7 @@ def index(request):
     # if request.method == 'POST':
     #     return 'hello'
     books= Book.objects.all().prefetch_related('user')
+    print(hasattr(books[0], 'loadbook'))
 
     return render(request, 'index.html',{'books':books})
 

@@ -6,8 +6,9 @@ from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout
 from django.contrib.auth import authenticate
 
-from django.contrib.auth.models import User, auth
-from django.contrib.auth.forms import UserCreationForm
+# from django.contrib.auth.models import User, auth
+from django.contrib.auth import get_user_model
+from django.contrib.auth.forms import UserCreationForm,UserChangeForm
 
 # Create your views here.
 
@@ -23,7 +24,7 @@ def login(request):
             auth_login(request, user)
             return redirect('/')
         else:
-            return redirect('/basicAuth/login/')
+            return redirect('/login/')
 
     else:
         print('login')
@@ -32,7 +33,7 @@ def login(request):
 
 def register(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = UserChangeForm(request.POST)
         if form.is_valid():
             user = form.save()
             auth_login(request, user)
@@ -40,7 +41,7 @@ def register(request):
             # log the user in
             return response
     else:
-        form = UserCreationForm()
+        form = UserChangeForm()
     return render(request, 'register.html', {'form': form})
 
 

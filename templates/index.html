@@ -12,6 +12,7 @@
       <th>Author</th>
       <th>Publisher</th>
       <th>Upload By</th>
+      <th>Booking</th>
     </tr>
   </thead>
   <tbody>
@@ -22,7 +23,7 @@
       <td>{{ book.author }}</td>
       <td>{{ book.publisher }}</td>
       <td>{{ book.user.first_name }} {{ book.user.last_name }}</td>
-      <!-- <td>{{ book.name }}</td> -->
+      <td>{{ (hasattr(book, 'loadbook') }}</td>
     </tr>     
     {% endfor %} 
   </tbody>
