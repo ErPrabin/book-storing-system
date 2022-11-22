@@ -9,6 +9,8 @@ from django.contrib.auth.decorators import login_required
 from Book.models import Book
 from django.core.paginator import Paginator
 from loanbook.models import LoanBook
+from django.http import JsonResponse
+import json
 
 # Create your views here.
 
@@ -56,3 +58,23 @@ def create(request):
 def update(request,loanbook):
     loanbook=LoanBook.objects.update(status=1,user_id=request.user.id,date=request.POST['date'])
     return loanbook
+
+def myBook(request):
+    books=Book.objects.filter(loanbook__status=1,loanbook__user_id=request.user)
+    paginator = Paginator(books, 10) # Show 2 contacts per page.
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'mybook.html',{'books':page_obj})
+
+def releaseBook(request,id):
+    loanbook=LoanBook.objects.get(pk=id)
+
+    try:
+        loanbook.status=0
+        loanbook.date=None
+        loanbook.save()
+        return redirect('/my-book')
+        
+    except Book.DoesNotExist :
+        return redirect('/my-book?mesg=failed')

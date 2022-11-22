@@ -1,0 +1,52 @@
+{% extends 'layout.html' %} {% block content %}
+{% load static %}
+
+<h3>Welcome</h3>
+<p>You can see the list of books below. Enjoy!!</p>
+<h2>Book List</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>S No.</th>
+      <th>Name</th>
+      <th>Author</th>
+      <th>Publisher</th>
+      <th>Upload By</th>
+      <th>Booked Date</th>
+      <th>Release  Date</th>
+      <th>Release</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for book in books  %}
+    <tr>
+      <td>{{ forloop.counter }}</td>
+      <td>{{ book.name }}</td>
+      <td>{{ book.author }}</td>
+      <td>{{ book.publisher }}</td>
+      <td>{{ book.user.first_name }} {{ book.user.last_name }}</td>
+      <td>{{ book.loanbook.created_at }}</td>
+      <td>{{ book.loanbook.date }}</td>
+      <td><a href="release/{{ book.loanbook.id }}" class="btn btn-primary">Release</a></td>
+    </tr>     
+    {% endfor %} 
+  </tbody>
+  <div class="pagination">
+    <span class="step-links">
+        {% if books.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ books.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ books.number }} of {{ books.paginator.num_pages }}.
+        </span>
+
+        {% if books.has_next %}
+            <a href="?page={{ books.next_page_number }}">next</a>
+            <a href="?page={{ books.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+</table>
+{% endblock %}
