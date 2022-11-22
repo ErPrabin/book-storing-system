@@ -78,3 +78,18 @@ def releaseBook(request,id):
         
     except Book.DoesNotExist :
         return redirect('/my-book?mesg=failed')
+
+def addBook(request):
+    if request.method=="POST":
+        book=Book(name=request.POST['name'],author=request.POST['author'],publisher=request.POST['publisher'],year=request.POST['year'],book_type=request.POST['book_type'],user=request.user)
+        book.save()
+        return redirect('/?mesg=success')
+    else:
+        return render(request,'addbook.html')
+def myBookList(request):
+    books=Book.objects.filter(user_id=request.user.id)
+    paginator = Paginator(books, 10) # Show 2 contacts per page.
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request,'mybooklist.html',{'books':page_obj})
