@@ -9,6 +9,7 @@ from django.contrib.auth import authenticate
 # from django.contrib.auth.models import User, auth
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm,UserChangeForm
+from accounts.forms.forms import CreateUserForm
 
 # Create your views here.
 
@@ -33,7 +34,7 @@ def login(request):
 
 def register(request):
     if request.method == 'POST':
-        form = UserChangeForm(request.POST)
+        form = CreateUserForm(request.POST)
         if form.is_valid():
             user = form.save()
             auth_login(request, user)
@@ -41,7 +42,7 @@ def register(request):
             # log the user in
             return response
     else:
-        form = UserChangeForm()
+        form = CreateUserForm()
     return render(request, 'register.html', {'form': form})
 
 
