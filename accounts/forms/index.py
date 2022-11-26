@@ -1,1 +1,1 @@
-from forms.forms import CreateUserForm
+from .forms import CreateUserForm

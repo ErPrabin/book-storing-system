@@ -17,6 +17,6 @@ class Book(models.Model):
     updated_at= models.DateField(default=timezone.now)
 
 
-    # def __str__(self):
-    #     return self.name
+    def __str__(self):
+        return self.name
 
