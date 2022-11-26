@@ -31,7 +31,6 @@ def booking(request):
     if request.method=='POST':
         try:
             loanbook=LoanBook.objects.get(book_id=request.POST['book_id'])
-            print(loanbook.status)
             if(loanbook.status==0):
                 update(request,loanbook)
                 return redirect('/?mesg=Success')
@@ -56,11 +55,15 @@ def create(request):
      return True
 
 def update(request,loanbook):
-    loanbook=LoanBook.objects.update(status=1,user_id=request.user.id,date=request.POST['date'])
+    loanbook.status=1
+    loanbook.user_id=request.user.id
+    loanbook.date=request.POST['date']
+    loanbook.save()
+    # loanbook=LoanBook.objects.update(status=1,user_id=request.user.id,date=request.POST['date'])
     return loanbook
 
 def myBook(request):
-    books=Book.objects.filter(loanbook__status=1,loanbook__user_id=request.user)
+    books=Book.objects.filter(loanbook__status=1,loanbook__user_id=request.user.id)
     paginator = Paginator(books, 10) # Show 2 contacts per page.
 
     page_number = request.GET.get('page')
