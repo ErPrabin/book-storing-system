@@ -10,6 +10,7 @@ from Book.models import Book
 from django.core.paginator import Paginator
 from loanbook.models import LoanBook
 from django.http import JsonResponse
+from django.contrib import messages
 import json
 
 # Create your views here.
@@ -33,14 +34,17 @@ def booking(request):
             loanbook=LoanBook.objects.get(book_id=request.POST['book_id'])
             if(loanbook.status==0):
                 update(request,loanbook)
-                return redirect('/?mesg=Success')
+                messages.success(request, 'Booking Success')
+                return redirect('/')
                 return render(request,'index.html',{'mesg':'Booking Success.'})
             else:
-                return redirect('/?mesg=failed')
+                messages.fail(request, 'Booking Failed')
+                return redirect('/')
                 return render(request,'index.html',{'mesg':'Booking Failed.'})
         except LoanBook.DoesNotExist :
             create(request)
-            return redirect('/?mesg=Success')
+            messages.fail(request, 'Booking Success')
+            return redirect('/')
 
             return render(request,'index.html',{'mesg':'Book Doesnot Exist.'})
 
@@ -77,16 +81,19 @@ def releaseBook(request,id):
         loanbook.status=0
         loanbook.date=None
         loanbook.save()
+        messages.success(request, 'Book Released.')
         return redirect('/my-book')
         
     except Book.DoesNotExist :
-        return redirect('/my-book?mesg=failed')
+        messages.fail(request, 'Book Doesnot Exist.')
+        return redirect('/my-book')
 
 def addBook(request):
     if request.method=="POST":
         book=Book(name=request.POST['name'],author=request.POST['author'],publisher=request.POST['publisher'],year=request.POST['year'],book_type=request.POST['book_type'],user=request.user)
         book.save()
-        return redirect('/?mesg=success')
+        messages.success(request, 'Book Added.')
+        return redirect('/')
     else:
         return render(request,'addbook.html')
 def myBookList(request):
