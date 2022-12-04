@@ -56,7 +56,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'online_bookstore_system.urls'
-AUTH_USER_MODEL= 'accounts.User'
+AUTH_USER_MODEL= 'accounts.CustomUser'
+
 
 TEMPLATES = [
     {

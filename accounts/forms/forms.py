@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
-from ..models import User
+from ..models import CustomUser
 
 class CreateUserForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
@@ -49,5 +49,5 @@ class CreateUserForm(UserCreationForm):
             'placeholder':'Password Again',
         })
     class Meta:
-        model=User
+        model=CustomUser
         fields=['username','email','mobile_number','address','password1','password2','first_name','last_name']
