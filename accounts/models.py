@@ -6,7 +6,7 @@ from .manager import UserManager
 # Create your models here.
 class User(AbstractUser):
     mobile_number=models.CharField(max_length=10)
-    email=models.EmailField(max_length=50)
+    email=models.EmailField(max_length=50,unique=True)
     address=models.CharField(max_length=100)
 
     objects =UserManager()
