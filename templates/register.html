@@ -1,42 +1,48 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/mystyle.css' %}"">
+
+<head>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/mystyle.css' %}"">
   </head>
 
 
 <body>
-  <div class="container" style="background-image: url('/static/img/bg.jpg');background-size: cover;">
-    <div class="register">
+  <div class=" container" style="background-image: url('/static/img/bg.jpg');background-size: cover;">
+  <div class="register">
 
-      <form action="" method="post">
-        <h2>Register Form</h2>
+    <form action="" method="post">
+      {% csrf_token %}
+      <h2>Register Form</h2>
 
-        <!-- <div class="imgcontainer">
+      <!-- <div class="imgcontainer">
     <img src="img_avatar2.png" alt="Avatar" class="avatar" />
   </div> -->
 
-        <label for="uname"><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="username" required />
+      {{ form.username }}
 
-        <label for="email"><b>First Name</b></label>
-        <input type="text" name="first_name" required>
+      {{ form.first_name }}
 
-        <label for="psw"><b>Last Name</b></label>
-        <input type="text" name="last_name" required>
+      {{ form.last_name }}
 
-        <label for="psw"><b>Email</b></label>
-        <input type="text" name="email" required>
+      {{ form.email }}
+      {{ form.mobile_number }}
+      {{ form.address }}
 
-        <button type="submit">Register</button>
+      {{ form.password1 }}
+      {{ form.password2 }}
 
-          <a href="/register" class="register-button" style="text-decoration: none;" class="btn">Create Account</a>
-      </form>
-    </div>
+
+      <button type="submit">Register</button>
+      <div class="already-user">
+        <a href="/login" class="register-button" style="text-decoration: none;" class="btn">ALready An User</a>
+      </div>
+
+    </form>
+  </div>
 
   </div>
 
-</body>
+  </body>
 
 </html>

@@ -19,23 +19,26 @@ body {
 
   /* Full-width input fields */
   input[type=text],
+  input[type=email],
   input[type=password] {
     width: 100%;
     padding: 15px;
-    margin: 5px 0 22px 0;
+    margin: 5px 0 10px 0;
     display: inline-block;
     border: none;
     background: #f1f1f1;
   }
 
   form {
-    padding: 50px 30px;
+    padding: 10px 30px;
   }
 
   .register {
-    background: #dfdee0;
-    margin: 0px 30%;
-  }
+    opacity: 0.;
+    background: rgb(223 222 224 / 80%);
+    border-radius: 30px;
+    margin: 0px 32%;
+}
 
   input[type=text]:focus,
   input[type=password]:focus {
@@ -87,6 +90,25 @@ body {
     content: "";
     clear: both;
     display: table;
+  }
+  .already-user{
+    background-color: #04AA6D;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    opacity: 0.9;
+  }
+  .already-user a{
+    text-decoration: none;
+    /* background-color: #04AA6D; */
+    color: white;
+    border: none;
+    font-size: 13px;
+    
   }
 
   /* Change styles for cancel button and signup button on extra small screens */
