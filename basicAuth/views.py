@@ -25,7 +25,9 @@ def login(request):
             auth_login(request, user)
             return redirect('/')
         else:
-            return redirect('/login/')
+            form={'errors':{'username':['User Doesnot Exist. Check Your Credential.']}}
+            return render(request, 'login.html',{'form':form})
+
 
     else:
         print('login')

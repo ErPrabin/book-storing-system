@@ -53,6 +53,9 @@ body {
   .errorist li{
     color: red;
   }
+  .form button{
+    color: white;
+  }
 
   /* Set a style for all buttons */
   button {
@@ -108,7 +111,7 @@ body {
   .already-user a{
     text-decoration: none;
     /* background-color: #04AA6D; */
-    color: white;
+    color: black;
     border: none;
     font-size: 13px;
     

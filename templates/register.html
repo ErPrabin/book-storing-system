@@ -1,90 +1,70 @@
-<!DOCTYPE html>
-<html>
+{% extends 'authTemp.html' %} {% block content %}
+{% load static %}
+<form action="" method="post">
+  {% csrf_token %}
+  <h2>Register Form</h2>
 
-<head>
-  {% load static %}
-  <link rel="stylesheet" href="{% static 'css/mystyle.css' %}"">
-  <link rel=" stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-</head>
-
-
-<body style="background-image: url('/static/img/bg.jpg');background-size: cover;">
-  <div class=" container">
-    <div class="register">
-
-      <form action="" method="post">
-        {% csrf_token %}
-        <h2>Register Form</h2>
-
-        <!-- <div class="imgcontainer">
+  <!-- <div class="imgcontainer">
     <img src="img_avatar2.png" alt="Avatar" class="avatar" />
   </div> -->
 
-        <label for="uname"><b>Username</b></label>
-        {{ form.username }}
-        <div class="error">
-          {% for error in form.errors.username %}
-          <p class="text-danger"> {{ error }}</p>
-          {% endfor %}
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-            <label for="email"><b>First Name</b></label>
-            {{ form.first_name }}
-          </div>
-          <div class="col-md-6">
-            <label for="psw"><b>Last Name</b></label>
-            {{ form.last_name }}
-          </div>
-        </div>
-
-
-
-
-        <label for="psw"><b>Email</b></label>
-        {{ form.email }}
-        <div class="error">
-          {% for error in form.errors.email %}
-          <p class="text-danger"> {{ error }}</p>
-          {% endfor %}
-        </div>
-
-        <div class="row">
-          <div class="col-md-6">
-            <label for="psw"><b>Phone Number</b></label>
-            {{ form.mobile_number }}
-          </div>
-          <div class="col-md-6">
-            <label for="psw"><b>Addres Number</b></label>
-            {{ form.address }}
-          </div>
-        </div>
-
-
-
-        <label for="psw"><b>Password</b></label>
-        {{ form.password1 }}
-        <label for="psw"><b>Enter Password Again</b></label>
-        {{ form.password2 }}
-        <div class="error">
-          {% for error in form.errors.password2 %}
-          <p class="text-danger"> {{ error }}</p>
-          {% endfor %}
-        </div>
-
-
-        <button type="submit">Register</button>
-        <div class="already-user">
-          <a href="/login" class="register-button" style="text-decoration: none;" class="btn">ALready An User</a>
-        </div>
-
-      </form>
+  <label for="uname"><b>Username</b></label>
+  {{ form.username }}
+  <div class="error">
+    {% for error in form.errors.username %}
+    <p class="text-danger"> {{ error }}</p>
+    {% endfor %}
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <label for="email"><b>First Name</b></label>
+      {{ form.first_name }}
     </div>
-
+    <div class="col-md-6">
+      <label for="psw"><b>Last Name</b></label>
+      {{ form.last_name }}
+    </div>
   </div>
 
-</body>
 
-</html>
+
+
+  <label for="psw"><b>Email</b></label>
+  {{ form.email }}
+  <div class="error">
+    {% for error in form.errors.email %}
+    <p class="text-danger"> {{ error }}</p>
+    {% endfor %}
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <label for="psw"><b>Phone Number</b></label>
+      {{ form.mobile_number }}
+    </div>
+    <div class="col-md-6">
+      <label for="psw"><b>Address Number</b></label>
+      {{ form.address }}
+    </div>
+  </div>
+
+
+
+  <label for="psw"><b>Password</b></label>
+  {{ form.password1 }}
+  <label for="psw"><b>Enter Password Again</b></label>
+  {{ form.password2 }}
+  <div class="error">
+    {% for error in form.errors.password2 %}
+    <p class="text-danger"> {{ error }}</p>
+    {% endfor %}
+  </div>
+
+
+  <button type="submit">Register</button>
+  <div class="already-user">
+    <a href="/login" class="register-button" style="text-decoration: none;" class="btn">Already An User</a>
+  </div>
+
+</form>
+{% endblock %}
