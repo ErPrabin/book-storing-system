@@ -6,13 +6,13 @@ from .manager import CustomUserManager
 
 
 class CustomUser(AbstractUser):
-    username = models.CharField(max_length=10,default=None,unique=False,null=True)
+    # username = None
     mobile_number = models.CharField(max_length=10)
     email = models.EmailField(max_length=50, unique=True)
     address = models.CharField(max_length=100)
     
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ['username']
     objects = CustomUserManager()
 
     def __str__(self):
