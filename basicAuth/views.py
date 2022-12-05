@@ -16,16 +16,15 @@ from accounts.forms.forms import CreateUserForm
 
 def login(request):
     if request.method == 'POST':
-        username = request.POST['username']
+        email = request.POST['email']
         password = request.POST['password']
-        print(username, password)
-        user = authenticate(request, username=username, password=password)
+        user = authenticate(request, username=email, password=password)
         print(user)
         if user is not None:
             auth_login(request, user)
             return redirect('/')
         else:
-            form={'errors':{'username':['User Doesnot Exist. Check Your Credential.']}}
+            form={'errors':{'email':['User Doesnot Exist. Check Your Credential.']}}
             return render(request, 'login.html',{'form':form})
 
 

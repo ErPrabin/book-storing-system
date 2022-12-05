@@ -9,21 +9,21 @@
         <img src="img_avatar2.png" alt="Avatar" class="avatar" />
       </div> -->
 
-  <label for="uname"><b>Username</b></label>
-  <input type="text" placeholder="Enter Username" name="username" required />
+  <label for="uname"><b>Email</b></label>
+  <input type="text" placeholder="Enter Username" name="email" required />
   
 
   <label for="psw"><b>Password</b></label>
   <input type="password" placeholder="Enter Password" name="password" required />
   <div class="error">
-    {% for error in form.errors.username %}
+    {% for error in form.errors.email %}
     <p class="text-danger"> {{ error }}</p>
     {% endfor %}
   </div>
   <button type="submit">Login</button>
 
   <div class="already-user">
-    <a href="/register" class="register-button" style="text-decoration: none;" class="btn">Already An User</a>
+    <a href="/register" class="register-button" style="text-decoration: none;" class="btn">Create Account</a>
   </div>
 </form>
 {%endblock%}
