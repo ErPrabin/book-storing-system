@@ -38,7 +38,7 @@ def booking(request):
                 return redirect('/')
                 return render(request,'index.html',{'mesg':'Booking Success.'})
             else:
-                messages.fail(request, 'Booking Failed')
+                messages.error(request, 'Booking Failed')
                 return redirect('/')
                 return render(request,'index.html',{'mesg':'Booking Failed.'})
         except LoanBook.DoesNotExist :
@@ -85,7 +85,7 @@ def releaseBook(request,id):
         return redirect('/my-book')
         
     except Book.DoesNotExist :
-        messages.fail(request, 'Book Doesnot Exist.')
+        messages.error(request, 'Book Doesnot Exist.')
         return redirect('/my-book')
 
 def addBook(request):
