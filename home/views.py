@@ -43,7 +43,7 @@ def booking(request):
                 return render(request,'index.html',{'mesg':'Booking Failed.'})
         except LoanBook.DoesNotExist :
             create(request)
-            messages.fail(request, 'Booking Success')
+            messages.success(request, 'Booking Success')
             return redirect('/')
 
             return render(request,'index.html',{'mesg':'Book Doesnot Exist.'})
