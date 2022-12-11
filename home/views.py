@@ -90,7 +90,7 @@ def releaseBook(request,id):
 
 def addBook(request):
     if request.method=="POST":
-        book=Book(name=request.POST['name'],author=request.POST['author'],publisher=request.POST['publisher'],year=request.POST['year'],book_type=request.POST['book_type'],user=request.user)
+        book=Book(name=request.POST['name'],author=request.POST['author'],publisher=request.POST['publisher'],year=request.POST['year'],user=request.user)
         book.save()
         messages.success(request, 'Book Added.')
         return redirect('/')
