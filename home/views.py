@@ -75,9 +75,10 @@ def myBook(request):
     return render(request, 'mybook.html',{'books':page_obj})
 
 def releaseBook(request,id):
-    loanbook=LoanBook.objects.get(pk=id)
 
     try:
+        loanbook=LoanBook.objects.get(pk=id)
+
         loanbook.status=0
         loanbook.date=None
         loanbook.save()
